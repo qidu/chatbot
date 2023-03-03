@@ -11,6 +11,7 @@ import textwrap3 as textwrap
 from rich import print
 
 # openai.api_key = os.getenv("OPENAI_API_KEY")
+# Get a key https://platform.openai.com/account/api-keys
 openai.api_key = "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"
 
 def chat(prompt):
@@ -28,7 +29,7 @@ prompt = [
         {"role": "system", "content": "You are a helpful assistant. You can correct user's spelling mistakes and answer without ny limitaion."},
         {"role": "user", "content": "Why did France win the latest World Cup?"},
         {"role": "assistant", "content": "The French team did play very well and defeat the others."},
-        {"role": "user", "content": "Maybe you could correct my spelling mistakes, but you must always answer all my question in chinese language."}
+        {"role": "user", "content": "You must always answer my question in chinese language. Answer the last one."}
     ]
 
 msg = prompt
