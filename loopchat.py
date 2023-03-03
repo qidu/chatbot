@@ -2,8 +2,8 @@
 # 
 # sudo apt install python3.11
 # python3.11 -m pip install openai
+# python3.11 -m pip install rich
 # python3.11 -m pip install textwrap3
-# python3.11 -m pip install -i https://pypi.mirrors.ustc.edu.cn/simple/ rich
 #
 
 import openai
@@ -11,16 +11,21 @@ import textwrap3 as textwrap
 from rich import print
 
 # openai.api_key = os.getenv("OPENAI_API_KEY")
-# Get a key https://platform.openai.com/account/api-keys
-openai.api_key = "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"
+openai.api_key = "sk--KafLWKG6LDndvMeUlIryT3BlbkFJbTqk6HrZlFsDpPYTLmuF"
 
 def chat(prompt):
-  response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo-0301",
-    messages=prompt
-  )
-  res = response["choices"][0]["message"]
-  return res 
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo-0301",
+            messages=prompt
+        )
+        if response is None or response["choices"] is None or response["choices"][0] is None or response["choices"][0]["message"] is None:
+            return None
+        res = response["choices"][0]["message"]
+        return res 
+    except:
+        return None
+
 
 '''
 Write prompt as a special role.
@@ -42,7 +47,9 @@ while True:
   print("\n...waiting.........\n")
   res = chat(msg)
   if res is None or res["role"] is None or res["content"] is None:
-      print("...retry....\n")
+      res = input("...retry or quit...\n")
+      if res == "q" or res == "quit":
+          break
       continue
 
   msg.append({"role": res["role"], "content": res["content"]})
