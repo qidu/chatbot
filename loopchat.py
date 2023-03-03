@@ -2,8 +2,8 @@
 # 
 # sudo apt install python3.11
 # python3.11 -m pip install openai
-# python3.11 -m pip install rich
 # python3.11 -m pip install textwrap3
+# python3.11 -m pip install -i https://pypi.mirrors.ustc.edu.cn/simple/ rich
 #
 
 import openai
